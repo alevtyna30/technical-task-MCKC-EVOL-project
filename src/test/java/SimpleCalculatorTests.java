@@ -1,4 +1,3 @@
-
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -11,6 +10,7 @@ public class SimpleCalculatorTests {
 
     public static final String MAX_INTEGER_MULTIPLY_TWO_MAX_VALUE = "4611686014132420609";
     public static final int SCALE = 5;
+
     private Calculator calculator = new SimpleCalculator(SCALE);
 
     @Test
