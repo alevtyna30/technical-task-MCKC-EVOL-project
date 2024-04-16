@@ -1,22 +1,43 @@
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class SimpleCalculator implements Calculator {
 
-    public double add(int a, int b) {
-        return (double) a + b;
+    private final int scale;
+
+    public SimpleCalculator(int scale) {
+        this.scale = scale;
     }
 
-    public double subtract(int a, int b) {
-        return a - b;
+    @Override
+    public BigDecimal add(int a, int b) {
+        BigDecimal bigA = new BigDecimal(a);
+        BigDecimal bigB = new BigDecimal(b);
+        return bigA.add(bigB);
     }
 
-    public double multiply(int a, int b) {
-        return a * b;
+    @Override
+    public BigDecimal subtract(int a, int b) {
+        BigDecimal bigA = new BigDecimal(a);
+        BigDecimal bigB = new BigDecimal(b);
+        return bigA.subtract(bigB);
     }
 
-    public double divide(int a, int b) {
+    @Override
+    public BigDecimal multiply(int a, int b) {
+        BigDecimal bigA = new BigDecimal(a);
+        BigDecimal bigB = new BigDecimal(b);
+        return bigA.multiply(bigB);
+    }
+
+    @Override
+    public BigDecimal divide(int a, int b) {
         if (b == 0) {
             throw new IllegalArgumentException("Cannot divide by zero");
         }
-
-        return (double) a / b;
+        BigDecimal bigA = new BigDecimal(a);
+        BigDecimal bigB = new BigDecimal(b);
+        return bigA.divide(bigB, scale, RoundingMode.HALF_UP);
     }
+
 }
